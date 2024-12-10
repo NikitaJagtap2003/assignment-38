@@ -9,86 +9,122 @@
     body{
         margin: 0%;
         padding: 0%;
+        background-color: rgba(144, 152, 167, 0.467);
     }
     .sidebar{
         width: 270px;
-        height: 100vh;
-        border-right: 1px solid rgb(224, 223, 223);
+        height: 350px;
+        border-radius: 10px;
+        border: 1px solid black;
+        border-left: none;
         background-color:rgb(199, 227, 238);
-        box-shadow: 0 0 10px 5px rgb(197, 197, 197);
+        background-color: #2357;
         visibility: hidden;
-    }
-    .menu-item{
-        padding: 5px;
-        padding-left: 10px;
-        margin-bottom: 10px;
-        display: flex;
-        align-items: end;
-        cursor: pointer;
-        border-radius: 0 25px 25px 0;
+        margin: 10px auto;
+        margin-left: 450px;
+        margin-top: -330px;
     }
     .close-item{
         text-align: right;
         padding: 10px;
         cursor: pointer;
     }
-    .menu-item:hover{
-        background-color: #a39999;
-        border: 1px solid rgb(155, 151, 151);
+    input{
+        text-align: start;
+        margin-left: 10px;
+        padding: 10px;
+        border: none;
+        border-radius: 5px;
     }
-    .menu-icon{
-        font-size: 20px;
-    }
-    .menu-text{
-        text-decoration: none;
-        color: #000;
-        margin-left: 5px;
-    }
-    .hamburger-menu{
-        position: fixed;
-        top: 10px;
-        left: 10px;
+    #hamburger-menu{
+        position: relative;
+        top:5px;
         cursor: pointer;
+        font-size: 25px;
     }
+    .name{
+      padding-left: 80px;
+    }
+    .meet {
+            text-align: center;
+            margin: 50px auto;
+        }
+
+        .text {
+            margin-left: 10px;
+            position: relative;
+            top: 4px;
+        }
+
+        .container {
+            height: 350px;
+            width: 450px;
+            border: 2px solid black;
+            margin: 50px auto;
+            background-color: #2357;
+            border-radius: 10px;
+        }
+
+        .para {
+            border: 2px solid black;
+            padding-right: 260px;
+            margin: 10px;
+            position: relative;
+            top: 10px;
+            border-radius: 8px;
+            padding-bottom: 10px;
+            background: #6789;
+            border: none;
+            padding-top: 8px;
+        }
+
+        .box {
+            height: 180px;
+            margin: 50px auto;
+            width: 300px;
+            border: 2px solid black;
+            border: none;
+            background: #6789;
+            border-radius: 8px
+        }
+
+        .images {
+            display: flex;
+            justify-content: center;
+            justify-content: space-evenly;
+        }
+        .img {
+            margin-left: 90px;
+            position: relative;
+            top: 20px
+        }
+        #students-container{
+            text-align: center;
+            padding: 20px;
+        }
 </style>
 <body>
-    <i class="fa-solid fa-list hamburger-menu" onclick="openSiderbar()" id="hamburger-menu"></i>
+    <h1 class="meet"> Google Meet<img src="./img/meet.png" height="30px" class="text"></h1>
+    <div class="container">
+        <span class="para">👧🏻 Nikita is Presenting..</span>
+        <div class="box"><img src="./img/woman.png" alt="" height="120px" class="img"></div>
+        <div class="images">
+            <img src="./img/mic.png" height="30px" onclick="mic('on')" id="demo">
+            <img src="./img/video-camera.png" height="30px" onclick="video('on')" id="video">
+            <img src="./img/hand.png" height="30px">
+            <img src="./img/smile.png" height="30px">
+            <i class="fa-solid fa-ellipsis-vertical" onclick="openSiderbar()" id="hamburger-menu"></i>
+            <img src="./img/circle.png" height="30px">
+           
+        </div>
+        
     <div class="sidebar" id="sidebar">
         <div class="close-item" onclick="closeSidebar()">
             <i class="fa-solid fa-xmark"></i>
         </div>
-        <!-- First Menu -->
-        <div class="menu-item">
-            <i class="fa-solid fa-house-user menu-icon"></i>
-            <a href="#" class="menu-text">User</a>
-        </div>
-        <!-- Secound Menu -->
-        <div class="menu-item">
-            <i class="fa-solid fa-file menu-icon"></i>
-            <a href="#" class="menu-text">File</a>
-        </div>
-          <!-- Third Menu -->
-        <div class="menu-item">
-            <i class="fa-solid fa-link menu-icon"></i>
-            <a href="#" class="menu-text">Shortcuts</a>
-        </div>
-         <!-- Fourth Menu -->
-        <div class="menu-item">
-            <i class="fa-solid fa-address-card menu-icon"></i>
-            <a href="#" class="menu-text">About</a>
-        </div>
-        <div class="menu-item">
-            <i class="fa-solid fa-gear menu-icon"></i>
-            <a href="#" class="menu-text">Services</a>
-        </div>
-        <div class="menu-item">
-            <i class="fa-regular fa-address-book menu-icon"></i>
-            <a href="#" class="menu-text">Contact</a>
-        </div>
-         <!-- Fifth Menu -->
-        <div class="menu-item">
-            <i class="fa-solid fa-right-from-bracket menu-icon"></i>
-            <a href="#" class="menu-text">Logout</a>
+        <input type="text" placeholder="enter name" class="name" id="search" onkeyup="loadsearchResult()">
+        <div id="students-container">
+
         </div>
     </div>
     <script src="https://kit.fontawesome.com/f80ec2f635.js" crossorigin="anonymous"></script>
@@ -98,7 +134,7 @@
             sidebarElement.style.visibility = 'visible';
 
             const hamburgerMenuElement = document.getElementById('hamburger-menu');
-            hamburgerMenuElement.style.visibility = 'hidden'
+            hamburgerMenuElement.style.visibility = 'visible'
         }
         function closeSidebar(){
             const sidebarElement = document.getElementById('sidebar');
@@ -107,6 +143,49 @@
             const hamburgerMenuElement = document.getElementById('hamburger-menu');
             hamburgerMenuElement.style.visibility = 'visible'
         }
+    
+        const students = [
+            "Nikita",
+            "Reshma",
+            "Swati",
+            "Namrata",
+            "Akash",
+            "Tanu",
+            "Mayuri",
+            "Neha"
+        ]
+        const studentsContainer = document.getElementById('students-container');
+        students.forEach((stud)=>{
+            studentsContainer.innerHTML += `<div class='student-card'>${stud}</div>`
+        })
+
+        function loadsearchResult(){
+            const inputElement = document.getElementById('search');
+            const searchText = inputElement.value.toLowerCase();
+
+            studentsContainer.innerHTML = '';
+
+        const filteredStudents = students.filter((stud)=>{
+            if(stud.toLowerCase().includes(searchText)){
+                return true;
+            }
+        })
+       filteredStudents.forEach((stud)=>{
+            studentsContainer.innerHTML += `<div class='student-card'>${stud}</div>`
+        })
+    }
+ function mic(mode){
+    const micElement = document.getElementById('demo');
+   if(mode == 'on'){
+micElement.src = "./img/mute.png";
+   }
+ }
+ function video(mode){
+    const micElement = document.getElementById('video');
+   if(mode == 'on'){
+micElement.src = "./img/video.png";
+   }
+ }
     </script>
 </body>
 </html>
